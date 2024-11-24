@@ -1,0 +1,14 @@
+<div class="list-page">
+    <h3>User List</h3>
+    <ul class="user-list">
+      <li class="user-list-item" *ngFor="let user of users$ | async">
+        <span class="user-name">{{ user.name }} ({{ user.active }})</span>
+        <div class="user-actions">
+          <button class="delete-button" (click)="deleteUser(user.id)">Delete</button>
+          <button mat-button color="primary" (click)="activateUser(user.id)" [disabled]="user.active">
+            Activate
+          </button>
+        </div>
+      </li>
+    </ul>
+</div>

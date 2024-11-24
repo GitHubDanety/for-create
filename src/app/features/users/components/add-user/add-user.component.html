@@ -1,0 +1,25 @@
+<div class="add-user-modal-overlay"></div>
+<div class="add-user-modal">
+  <h3>Add new user</h3>
+  <form [formGroup]="addUserForm">
+    <mat-form-field appearance="fill" class="form-group">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="addUserForm.get('name')?.invalid">
+        <span *ngIf="addUserForm.get('name')?.hasError('required')">Name is mandatory</span>
+        <span *ngIf="addUserForm.get('name')?.hasError('nameTaken')">Name is taken</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-group">
+      <mat-label>Active</mat-label>
+      <mat-select formControlName="active">
+        <mat-option [value]="true">Yes</mat-option>
+        <mat-option [value]="false">No</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="actions">
+      <button mat-button class="cancel-button" (click)="cancel()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="addUser()" [disabled]="addUserForm.invalid || addUserForm.get('name')?.pending">Add</button>
+    </div>
+  </form>
+</div>
